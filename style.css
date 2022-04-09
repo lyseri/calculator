@@ -7,7 +7,8 @@ body {
 
 #calculator-casing {
     border: solid black;
-    padding: 10px 10px;
+    border-radius: 2%;
+    padding: 1.5vh 1.5vw;
     display: flex;
     gap: 1em;
     flex-flow: column;
@@ -15,5 +16,11 @@ body {
 
 #display {
     border: solid black;
-    padding: 5px 5px;
+    padding: 5vh 5vh;
+}
+
+button {
+    height: 5vh;
+    width: 5vw;
+    font-size: 2vh;
 }

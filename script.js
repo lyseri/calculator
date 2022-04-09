@@ -25,3 +25,21 @@ function operate(a,b,operator) {
         return divide(a,b);
     }
 }
+
+displayText = '';
+calculator = {};
+const display = querySelector('#display');
+
+const buttons = document.querySelectorAll('button');
+
+// Converts buttons array into object
+for (let i = 0; i < buttons.length; i++) {
+    calculator[buttons[i].getAttribute('id')] = buttons[i];
+  }
+
+
+for (let i in calculator) {
+    i.addEventListener('click', () => {
+        i  
+    })
+}
