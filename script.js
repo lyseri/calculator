@@ -14,7 +14,7 @@ function divide(a,b) {
     return a/b;
 }
 
-function operate(a,b,operator) {
+function operate(a,operator,b) {
     if (operator == "+") {
         return add(a,b);
     } else if (operator == "-") {
@@ -27,19 +27,48 @@ function operate(a,b,operator) {
 }
 
 displayText = '';
-calculator = {};
-const display = querySelector('#display');
+currentNum = '';
+currentEquation = [];
 
-const buttons = document.querySelectorAll('button');
+const display = document.querySelector('#display');
 
-// Converts buttons array into object
-for (let i = 0; i < buttons.length; i++) {
-    calculator[buttons[i].getAttribute('id')] = buttons[i];
-  }
+// Operator and input arrays, looped eventListener
+const inputButtons = document.querySelectorAll('.input');
+const operatorButtons = document.querySelectorAll('.operator');
 
+// Individual function buttons, unique eventListener
+const clear = document.querySelector('#clear');
+const backspace = document.querySelector('#backspace');
+const anwser = document.querySelector('#anwser');
+const equals = document.querySelector('#equals');
 
-for (let i in calculator) {
-    i.addEventListener('click', () => {
-        i  
-    })
+// Collects num inputs in currentNum plus adds them to display
+for (let i = 0; i < inputButtons.length; i++) {
+    inputButtons[i].addEventListener('click', () => {
+        display.textContent += inputButtons[i].textContent;
+        currentNum += inputButtons[i].textContent;
+        console.log(currentEquation);
+    });
 }
+
+// Pushes currentNum to currentEquation and checks for valid preceeding character (a number)
+for (let i = 0; i < operatorButtons.length; i++) {
+    operatorButtons[i].addEventListener('click', () => {
+        last = currentEquation[currentEquation.length-1]; 
+        if (typeof last == 'number' || currentNum != '') {
+            currentEquation.push(currentNum);
+            currentNum = '';
+            display.textContent += operatorButtons[i].textContent;
+            currentEquation.push(operatorButtons[i].textContent);
+            console.log(currentEquation);
+        } else {
+            return;
+        }
+    });
+}
+
+clear.addEventListener('click', () => {
+    currentNum = '';
+    currentEquation = [];
+    display.textContent = '';
+});
