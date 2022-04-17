@@ -26,8 +26,6 @@ function operate(a,operator,b) {
     }
 }
 
-displayText = '';
-currentNum = '';
 currentEquation = [];
 
 const display = document.querySelector('#display');
@@ -42,11 +40,11 @@ const backspace = document.querySelector('#backspace');
 const anwser = document.querySelector('#anwser');
 const equals = document.querySelector('#equals');
 
-// Collects num inputs in currentNum plus adds them to display
+// Collects inputs in currentEquation plus adds them to display
 for (let i = 0; i < inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', () => {
         display.textContent += inputButtons[i].textContent;
-        currentNum += inputButtons[i].textContent;
+        currentEquation.push(parseInt(inputButtons[i].textContent))
         console.log(currentEquation);
     });
 }
@@ -54,12 +52,9 @@ for (let i = 0; i < inputButtons.length; i++) {
 // Pushes currentNum to currentEquation and checks for valid preceeding character (a number)
 for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', () => {
-        last = currentEquation[currentEquation.length-1]; 
-        if (typeof last == 'number' || currentNum != '') {
-            currentEquation.push(currentNum);
-            currentNum = '';
-            display.textContent += operatorButtons[i].textContent;
+        if (typeof currentEquation[currentEquation.length-1] == 'number') {
             currentEquation.push(operatorButtons[i].textContent);
+            display.textContent += operatorButtons[i].textContent;
             console.log(currentEquation);
         } else {
             return;
@@ -67,8 +62,20 @@ for (let i = 0; i < operatorButtons.length; i++) {
     });
 }
 
+// Clears display and currentEquation
 clear.addEventListener('click', () => {
     currentNum = '';
     currentEquation = [];
     display.textContent = '';
+    console.log(currentEquation);
 });
+
+// Removes last input
+backspace.addEventListener('click', () => {
+    last = currentEquation[currentEquation.length - 1];
+
+    currentEquation.pop(last);
+    display.textContent = display.textContent.slice(0,-1)
+    console.log(currentEquation);
+});
+
