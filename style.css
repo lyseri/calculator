@@ -14,8 +14,18 @@ body {
     flex-flow: column;
 }
 
-#display {
+#display-casing {
     border: solid black;
+}
+
+#display {
+    display: inline;
+    font-size: 3vh;
+}
+
+#display-height-holder {
+    display: inline-block;
+    height: 3.5vh;
 }
 
 button {

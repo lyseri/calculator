@@ -26,6 +26,26 @@ function operate(a,operator,b) {
     }
 }
 
+function condenseInput(input) {
+    numHolder = '';
+    solveEquation = [];
+
+    for (let i in input) {
+        if (typeof input[i] == 'number') {
+            numHolder += input[i];
+            if (i == input.length - 1) {
+                solveEquation.push(parseInt(numHolder));
+                numHolder = '';
+            }
+        } else {
+            solveEquation.push(parseInt(numHolder));
+            solveEquation.push(input[i]);
+            numHolder = '';
+        }
+    }
+    return solveEquation;
+} 
+
 currentEquation = [];
 
 const display = document.querySelector('#display');
@@ -45,7 +65,6 @@ for (let i = 0; i < inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', () => {
         display.textContent += inputButtons[i].textContent;
         currentEquation.push(parseInt(inputButtons[i].textContent))
-        console.log(currentEquation);
     });
 }
 
@@ -55,7 +74,6 @@ for (let i = 0; i < operatorButtons.length; i++) {
         if (typeof currentEquation[currentEquation.length-1] == 'number') {
             currentEquation.push(operatorButtons[i].textContent);
             display.textContent += operatorButtons[i].textContent;
-            console.log(currentEquation);
         } else {
             return;
         }
@@ -64,10 +82,8 @@ for (let i = 0; i < operatorButtons.length; i++) {
 
 // Clears display and currentEquation
 clear.addEventListener('click', () => {
-    currentNum = '';
     currentEquation = [];
     display.textContent = '';
-    console.log(currentEquation);
 });
 
 // Removes last input
@@ -76,6 +92,46 @@ backspace.addEventListener('click', () => {
 
     currentEquation.pop(last);
     display.textContent = display.textContent.slice(0,-1)
-    console.log(currentEquation);
 });
 
+// Solves the equation with MDAS order of operation, and calls input condenser
+equals.addEventListener('click', () => {
+    placeholder = [];
+    solveEquation = condenseInput(currentEquation);
+
+    // Checks if last index is a number
+    if (typeof solveEquation[solveEquation.length-1] == 'number') {
+        // solves * or /
+        for (let i = 0; i < solveEquation.length-1; i++) {
+            if (solveEquation[i] == '*' || solveEquation[i] == '/') {
+                first = solveEquation[i-1];
+                second = solveEquation[parseInt(i)+1];
+                operator = solveEquation[i];
+
+                solveEquation.splice(parseInt(i)-1,3, operate(first,operator,second));
+                i = 0;
+            } else {
+                continue;
+            }
+        }
+
+        // Then solves for + or -
+        for (let i = 0; i < solveEquation.length-1; i++) {
+            if (solveEquation[i] == '+' || solveEquation[i] == '-') {
+                first = solveEquation[i-1];
+                second = solveEquation[parseInt(i)+1];
+                operator = solveEquation[i];
+
+                solveEquation.splice(parseInt(i)-1,3, operate(first,operator,second));
+                i = 0;
+            } else {
+                continue;
+            }
+        }
+
+        // Sets result as display and starts as first term in currentEquation
+        currentEquation = solveEquation;
+        display.textContent = solveEquation[0];
+    }
+
+});
