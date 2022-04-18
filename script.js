@@ -92,6 +92,7 @@ backspace.addEventListener('click', () => {
 
     currentEquation.pop(last);
     display.textContent = display.textContent.slice(0,-1)
+    console.log(currentEquation);
 });
 
 // Solves the equation with MDAS order of operation, and calls input condenser
@@ -130,8 +131,13 @@ equals.addEventListener('click', () => {
         }
 
         // Sets result as display and starts as first term in currentEquation
-        currentEquation = solveEquation;
         display.textContent = solveEquation[0];
+        currentEquation = [];
+        string = solveEquation[0] + '';
+
+        for (let i = 0; i < string.length; i++) {
+            currentEquation.push(parseInt(string[i]));
+        }
     }
 
 });
