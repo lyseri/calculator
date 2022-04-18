@@ -8,28 +8,40 @@ body {
 #calculator-casing {
     border: solid black;
     border-radius: 2%;
-    padding: 1.5vh 1.5vw;
+    padding: 2vh 2vw;
     display: flex;
-    gap: 1em;
+    gap: 2.5em;
     flex-flow: column;
 }
 
 #display-casing {
     border: solid black;
+    border-radius: 7px;
 }
 
 #display {
     display: inline;
-    font-size: 3vh;
+    font-size: 6vh;
+    text-align: center;
 }
 
 #display-height-holder {
     display: inline-block;
-    height: 3.5vh;
+    height: 6vh;
 }
 
 button {
-    height: 5vh;
-    width: 5vw;
-    font-size: 2vh;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
+
+    height: 10vh;
+    width: 12vw;
+    font-size: 2.5vh;
+    transition-duration: .4s;
 }
+
+button:hover {
+    background-color: rgb(205, 205, 205);
+  }

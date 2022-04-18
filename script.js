@@ -139,5 +139,4 @@ equals.addEventListener('click', () => {
             currentEquation.push(parseInt(string[i]));
         }
     }
-
 });
