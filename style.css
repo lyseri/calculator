@@ -30,8 +30,7 @@ body {
     height: 6vh;
 }
 
-button {
-    background-color: white;
+#button-holder-longer-height .row button {
     color: black;
     border: 2px solid black;
     border-radius: 8px;
@@ -42,6 +41,30 @@ button {
     transition-duration: .4s;
 }
 
+#button-holder-longer-width .row button {
+
+    color: black;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin-top: 2px;
+    height: 14vh;
+    width: 8vw;
+    font-size: 2.5vh;
+    transition-duration: .4s;
+}
+
+.operator{
+    background-color: rgba(243, 138, 81, 0.96);
+}
+
+.function {
+    background-color: rgb(255, 191, 0);
+}
+
+#row-four .function {
+    background-color: white;
+}
+
 button:hover {
-    background-color: rgb(205, 205, 205);
+    background-color: rgb(205, 205, 205) !important;
   }
