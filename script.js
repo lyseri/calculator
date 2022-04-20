@@ -107,10 +107,15 @@ point.addEventListener('click', () => {
 
 // Inputs previous anwser
 anwser.addEventListener('click', () => {
-    for (let i in previousAnwser) {
-        currentEquation.push(previousAnwser[i]);
-        display.textContent += previousAnwser[i];
+    if (typeof currentEquation[currentEquation.length-1] != 'number') {
+        for (let i in previousAnwser) {
+            currentEquation.push(previousAnwser[i]);
+            display.textContent += previousAnwser[i];
+        }
+    } else {
+        return;
     }
+
     console.log(currentEquation);
 });
 
@@ -192,6 +197,6 @@ equals.addEventListener('click', () => {
     console.log(solveEquation[0]);
     console.log(currentEquation);
 });
-
+// ANS key allows to decimals
 // keyboard support
 // better display for long equations
