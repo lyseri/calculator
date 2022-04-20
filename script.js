@@ -167,6 +167,9 @@ equals.addEventListener('click', () => {
             }
         }
 
+        // Rounds end result to second decimal
+        solveEquation[0] = Math.round(solveEquation[0]*100)/100;
+
         // Sets result as display and starts as first term in currentEquation
         display.textContent = solveEquation[0];
         currentEquation = [];
@@ -189,3 +192,6 @@ equals.addEventListener('click', () => {
     console.log(solveEquation[0]);
     console.log(currentEquation);
 });
+
+// keyboard support
+// better display for long equations
