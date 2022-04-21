@@ -47,15 +47,6 @@ function condenseInput(input) {
     return solveEquation;
 } 
 
-// Checks sizing and adjusts id for css properties
-function windowSizeChecker() {
-    if (window.innerHeight < window.innerWidth) {
-        container.id = 'button-holder-longer-width';
-    } else if (window.innerHeight > window.innerWidth) {
-        container.id = 'button-holder-longer-height';
-    }
-}
-
 currentEquation = [];
 previousAnwser = [];
 
@@ -74,13 +65,6 @@ const backspace = document.querySelector('#backspace');
 const anwser = document.querySelector('#anwser');
 const equals = document.querySelector('#equals');
 const point = document.querySelector('#point')
-
-// Dynamic sizing
-const container = document.querySelector('#button-holder-longer-height')
-
-window.addEventListener('resize', () => {
-    windowSizeChecker();
-})
 
 // Collects inputs in currentEquation plus adds them to display
 for (let i = 0; i < inputButtons.length; i++) {

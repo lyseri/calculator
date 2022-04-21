@@ -3,68 +3,78 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #calculator-casing {
-    border: solid black;
     border-radius: 2%;
-    padding: 2vh 2vw;
+    padding: 10px 10px;
+    background-color: rgb(36, 36, 36);
+
     display: flex;
-    gap: 2.5em;
+    gap: 1em;
     flex-flow: column;
 }
 
 #display-casing {
-    border: solid black;
+    background-color: rgb(88, 88, 88);
     border-radius: 7px;
 }
 
 #display {
-    display: inline;
-    font-size: 4vh;
-    text-align: center;
+    color: white;
+    font-size: 25px;
+    text-align: right;
 }
 
-#display-height-holder {
+#display-result {
     display: inline-block;
-    height: 6vh;
 }
 
-#button-holder-longer-height .row button {
-    color: black;
-    border: 2px solid black;
-    border-radius: 8px;
+button {
+    background-color: rgb(53, 53, 53);
+    border: 0px;
+    border-radius: 100px;
     margin-top: 2px;
-    height: 10vh;
-    width: 12vw;
-    font-size: 2.5vh;
+    height: 75px;
+    width: 75px;
+    font-size: x-large;
+    font-weight: 200;
     transition-duration: .4s;
 }
 
-#button-holder-longer-width .row button {
-
-    color: black;
-    border: 2px solid black;
-    border-radius: 8px;
-    margin-top: 2px;
-    height: 14vh;
-    width: 8vw;
-    font-size: 2.5vh;
-    transition-duration: .4s;
+.input {
+    color: white;
 }
+
+.input:hover {
+    background-color: rgb(66, 66, 66) !important;
+    border-radius: 25px;
+  }
 
 .operator{
     background-color: rgba(243, 138, 81, 0.96);
 }
 
+.operator:hover {
+    background-color: rgba(243, 157, 81, 0.96) !important;
+    border-radius: 25px;
+  }
+
 .function {
     background-color: rgb(255, 191, 0);
+}
+
+.function:hover {
+    background-color: #ffcc00; !important;
+    border-radius: 25px;
+  }
+
+#point {
+    color: white;
 }
 
 #row-four .function {
     background-color: white;
 }
 
-button:hover {
-    background-color: rgb(205, 205, 205) !important;
-  }
