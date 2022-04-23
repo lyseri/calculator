@@ -47,13 +47,35 @@ function condenseInput(input) {
     return solveEquation;
 } 
 
+function lengthChecker() {
+    string = display.textContent;
+
+    if (string.length >= 19) {
+        string = string.slice(1);
+        display.textContent = string;
+        console.log(string);
+        return;
+    }
+}
+
+//Checks if last textContent is anwser to clear for new equation
+function anwserCheck() {
+    if (anwserChecker == true) {
+        displayResult.textContent = '';
+        display.textContent = '';
+        anwserChecker = false;
+    }
+}
+
 currentEquation = [];
 previousAnwser = [];
 
 // For saving if current num has a point
 pointChecker = false;
+anwserChecker = false;
 
 const display = document.querySelector('#display');
+const displayResult = document.querySelector('#display-result')
 
 // Operator and input arrays, looped eventListener
 const inputButtons = document.querySelectorAll('.input');
@@ -62,13 +84,14 @@ const operatorButtons = document.querySelectorAll('.operator');
 // Individual function buttons, unique eventListener
 const clear = document.querySelector('#clear');
 const backspace = document.querySelector('#backspace');
-const anwser = document.querySelector('#anwser');
 const equals = document.querySelector('#equals');
 const point = document.querySelector('#point')
 
 // Collects inputs in currentEquation plus adds them to display
 for (let i = 0; i < inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', () => {
+        anwserCheck();
+        lengthChecker();
         display.textContent += inputButtons[i].textContent;
         currentEquation.push(parseInt(inputButtons[i].textContent))
 
@@ -80,6 +103,8 @@ for (let i = 0; i < inputButtons.length; i++) {
 // Pushes currentNum to currentEquation and checks for valid preceeding character (a number)
 for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', () => {
+        anwserCheck()
+        lengthChecker();
         if (typeof currentEquation[currentEquation.length-1] == 'number') {
             currentEquation.push(operatorButtons[i].textContent);
             display.textContent += operatorButtons[i].textContent;
@@ -94,6 +119,8 @@ for (let i = 0; i < operatorButtons.length; i++) {
 
 // Adds point input
 point.addEventListener('click', () => {
+    anwserCheck()
+    lengthChecker();
     if (pointChecker == false) {
         display.textContent += point.textContent;
         currentEquation.push(point.textContent);
@@ -105,31 +132,22 @@ point.addEventListener('click', () => {
     console.log(currentEquation);
 });
 
-// Inputs previous anwser
-anwser.addEventListener('click', () => {
-    if (typeof currentEquation[currentEquation.length-1] != 'number') {
-        for (let i in previousAnwser) {
-            currentEquation.push(previousAnwser[i]);
-            display.textContent += previousAnwser[i];
-        }
-    } else {
-        return;
-    }
-
-    console.log(currentEquation);
-});
-
 // Clears display and currentEquation
 clear.addEventListener('click', () => {
     currentEquation = [];
     display.textContent = '';
+    displayResult.textContent = '';
     pointChecker = false;
-
+    anwserChecker = false;
     console.log(currentEquation);
 });
 
 // Removes last input
 backspace.addEventListener('click', () => {
+    if (anwserChecker == true) {
+        display.textContent = '';
+        displayResult.textContent = '';
+    }
     last = currentEquation[currentEquation.length - 1];
     currentEquation.pop(last);
     display.textContent = display.textContent.slice(0,-1)
@@ -173,10 +191,12 @@ equals.addEventListener('click', () => {
         }
 
         // Rounds end result to second decimal
-        solveEquation[0] = Math.round(solveEquation[0]*100)/100;
+        solveEquation[0] = Math.round(solveEquation[0]*1000)/1000;
 
         // Sets result as display and starts as first term in currentEquation
-        display.textContent = solveEquation[0];
+        displayResult.textContent = solveEquation[0];
+
+        anwserChecker = true;
         currentEquation = [];
         previousAnwser = [];
 
@@ -184,10 +204,8 @@ equals.addEventListener('click', () => {
         string = solveEquation[0] + '';
         for (let i = 0; i < string.length; i++) {
             if (string[i] == '.') {
-                currentEquation.push(string[i]);
                 previousAnwser.push(string[i]);
             } else {
-                currentEquation.push(parseInt(string[i]));
                 previousAnwser.push(parseInt(string[i]));
             }
             
@@ -197,5 +215,3 @@ equals.addEventListener('click', () => {
     console.log(solveEquation[0]);
     console.log(currentEquation);
 });
-// better display for long equations
-// keyboard support

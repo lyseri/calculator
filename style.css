@@ -4,6 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: rgb(18, 18, 18);
 }
 
 #calculator-casing {
@@ -18,17 +19,28 @@ body {
 
 #display-casing {
     background-color: rgb(88, 88, 88);
-    border-radius: 7px;
+    height: 90px;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: column;
 }
 
 #display {
     color: white;
     font-size: 25px;
     text-align: right;
+    height: 10px;
+
+    flex: 1;
 }
 
 #display-result {
-    display: inline-block;
+    color: white;
+    font-size: 20px;
+    text-align: right;
+    height: 10px;
+    
+    flex: 1;
 }
 
 button {
@@ -38,7 +50,7 @@ button {
     margin-top: 2px;
     height: 75px;
     width: 75px;
-    font-size: x-large;
+    font-size: xx-large;
     font-weight: 200;
     transition-duration: .4s;
 }
@@ -66,7 +78,7 @@ button {
 }
 
 .function:hover {
-    background-color: #ffcc00; !important;
+    background-color: #ffcc00 !important;
     border-radius: 25px;
   }
 
@@ -74,7 +86,23 @@ button {
     color: white;
 }
 
+#point:hover {
+    background-color: rgb(66, 66, 66) !important;
+    border-radius: 25px;
+  }
+
 #row-four .function {
     background-color: white;
+}
+
+#equals {
+    width: 150px;
+    border-radius: 30px;
+    color: white;
+}
+
+#equals:hover {
+    background-color: rgb(66, 66, 66) !important;
+    border-radius: 15px;
 }
 
