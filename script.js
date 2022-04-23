@@ -47,17 +47,6 @@ function condenseInput(input) {
     return solveEquation;
 } 
 
-function lengthChecker() {
-    string = display.textContent;
-
-    if (string.length >= 19) {
-        string = string.slice(1);
-        display.textContent = string;
-        console.log(string);
-        return;
-    }
-}
-
 //Checks if last textContent is anwser to clear for new equation
 function anwserCheck() {
     if (anwserChecker == true) {
@@ -91,7 +80,7 @@ const point = document.querySelector('#point')
 for (let i = 0; i < inputButtons.length; i++) {
     inputButtons[i].addEventListener('click', () => {
         anwserCheck();
-        lengthChecker();
+
         display.textContent += inputButtons[i].textContent;
         currentEquation.push(parseInt(inputButtons[i].textContent))
 
@@ -104,7 +93,7 @@ for (let i = 0; i < inputButtons.length; i++) {
 for (let i = 0; i < operatorButtons.length; i++) {
     operatorButtons[i].addEventListener('click', () => {
         anwserCheck()
-        lengthChecker();
+
         if (typeof currentEquation[currentEquation.length-1] == 'number') {
             currentEquation.push(operatorButtons[i].textContent);
             display.textContent += operatorButtons[i].textContent;
@@ -120,7 +109,6 @@ for (let i = 0; i < operatorButtons.length; i++) {
 // Adds point input
 point.addEventListener('click', () => {
     anwserCheck()
-    lengthChecker();
     if (pointChecker == false) {
         display.textContent += point.textContent;
         currentEquation.push(point.textContent);
