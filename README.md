@@ -6,3 +6,7 @@ Emulates a physical standard calculator
  - readable code
  - inituitive functions
  - solidifying current knowledge
+ 
+ [calculator link](https://lyseri.github.io/calculator/)
+ 
+ 
